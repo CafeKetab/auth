@@ -12,13 +12,11 @@ import (
 )
 
 func main() {
-	const short = "short description"
-	const long = `long description`
+	const description = "auth microservice for CafeKetab"
+	root := &cobra.Command{Short: description}
 
 	trap := make(chan os.Signal, 1)
 	signal.Notify(trap, syscall.SIGINT, syscall.SIGTERM)
-
-	root := &cobra.Command{Short: short, Long: long}
 
 	root.AddCommand(
 		cmd.Server{}.Command(trap),
