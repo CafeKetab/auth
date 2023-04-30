@@ -21,7 +21,7 @@ func Default() *Config {
 			PublicPem: "-----BEGIN PUBLIC KEY-----\n" +
 				"MCowBQYDK2VwAyEAqQsZ5iRNP3kdpNn3V/db9o/WkYHY8kkwQqCZGcDvJ+g=\n" +
 				"-----END PUBLIC KEY-----",
-			Expiration: 30 * time.Minute,
+			Expiration: 30 * time.Second,
 		},
 		Crypto: &crypto.Config{
 			Secret: "7w!z%C*F-JaNdRgU",

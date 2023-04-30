@@ -42,15 +42,22 @@ func New(cfg *Config) (Token, error) {
 	return token, nil
 }
 
+type Payload struct {
+	Data []byte `json:"data"`
+	jwt.RegisteredClaims
+}
+
 func (token *token) CreateTokenString(data interface{}) (string, error) {
-	expiredAt := time.Now().Add(token.expiration).Unix()
 	dataBytes, err := json.Marshal(data)
 	if err != nil {
 		errStr := fmt.Sprintf("error marshal data: %v", err)
 		return "", errors.New(errStr)
 	}
 
-	payload := &Payload{Data: dataBytes, ExpiredAt: expiredAt}
+	expierdAt := jwt.NewNumericDate(time.Now().Add(token.expiration))
+	registeredClaim := jwt.RegisteredClaims{ExpiresAt: expierdAt}
+	payload := &Payload{dataBytes, registeredClaim}
+
 	jwtToken := jwt.NewWithClaims(jwt.SigningMethodEdDSA, payload)
 	return jwtToken.SignedString(token.privateEd25519Key)
 }
