@@ -2,6 +2,7 @@ package grpc
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net"
 	"strconv"
@@ -16,14 +17,15 @@ import (
 
 type server struct {
 	logger *zap.Logger
-	token  token.Token
 	crypto crypto.Crypto
+	token  token.Token
 
 	server *grpc.Server
+	pb.UnimplementedAuthServer
 }
 
-func NewServer(logger *zap.Logger, token token.Token, crypto crypto.Crypto) ports.Server {
-	s := &server{logger: logger, token: token, crypto: crypto}
+func New(logger *zap.Logger, crypto crypto.Crypto, token token.Token) ports.Server {
+	s := &server{logger: logger, crypto: crypto, token: token}
 
 	s.server = grpc.NewServer()
 	pb.RegisterAuthServer(s.server, s)
@@ -44,6 +46,10 @@ func (s *server) Serve(port int) {
 }
 
 func (s *server) CreateTokenFromId(ctx context.Context, pbId *pb.Id) (*pb.Token, error) {
+	if pbId.Value == 0 {
+		return nil, errors.New("invalid")
+	}
+
 	payload, err := s.crypto.Encrypt(fmt.Sprint(pbId.Value))
 	if err != nil {
 
