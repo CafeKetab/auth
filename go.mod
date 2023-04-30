@@ -3,6 +3,7 @@ module github.com/CafeKetab/auth-go
 go 1.20
 
 require (
+	github.com/CafeKetab/PBs v0.1.5
 	github.com/davecgh/go-spew v1.1.1
 	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/knadh/koanf/providers/env v0.1.0
@@ -28,5 +29,5 @@ require (
 	golang.org/x/sys v0.6.0 // indirect
 	golang.org/x/text v0.8.0 // indirect
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f // indirect
-	google.golang.org/protobuf v1.28.1 // indirect
+	google.golang.org/protobuf v1.30.0 // indirect
 )

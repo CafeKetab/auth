@@ -1,5 +1,5 @@
 package ports
 
 type Server interface {
-	Serve()
+	Serve(port int)
 }
