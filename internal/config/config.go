@@ -7,7 +7,7 @@ import (
 )
 
 type Config struct {
-	Logger *logger.Config `koanf:"log"`
+	Logger *logger.Config `koanf:"logger"`
 	Token  *token.Config  `koanf:"token"`
 	Crypto *crypto.Config `koanf:"crypto"`
 }
