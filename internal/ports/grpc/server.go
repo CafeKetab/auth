@@ -8,7 +8,6 @@ import (
 	"strconv"
 
 	pb "github.com/CafeKetab/PBs/golang/auth"
-	"github.com/CafeKetab/auth/internal/ports"
 	"github.com/CafeKetab/auth/pkg/crypto"
 	"github.com/CafeKetab/auth/pkg/token"
 	"go.uber.org/zap"
@@ -16,6 +15,7 @@ import (
 )
 
 type server struct {
+	config *Config
 	logger *zap.Logger
 	crypto crypto.Crypto
 	token  token.Token
@@ -24,8 +24,8 @@ type server struct {
 	pb.UnimplementedAuthServer
 }
 
-func New(logger *zap.Logger, crypto crypto.Crypto, token token.Token) ports.Server {
-	s := &server{logger: logger, crypto: crypto, token: token}
+func New(cfg *Config, log *zap.Logger, c crypto.Crypto, t token.Token) *server {
+	s := &server{config: cfg, logger: log, crypto: c, token: t}
 
 	s.api = grpc.NewServer()
 	pb.RegisterAuthServer(s.api, s)
@@ -33,11 +33,11 @@ func New(logger *zap.Logger, crypto crypto.Crypto, token token.Token) ports.Serv
 	return s
 }
 
-func (s *server) Serve(port int) {
-	address := fmt.Sprintf(":%d", port)
+func (s *server) Serve() {
+	address := fmt.Sprintf(":%d", s.config.ListenPort)
 	listener, err := net.Listen("tcp", address)
 	if err != nil {
-		s.logger.Panic("Error listening for gRPC server", zap.Int("port", port), zap.Error(err))
+		s.logger.Panic("Error listening on tcp address", zap.Int("port", s.config.ListenPort), zap.Error(err))
 	}
 
 	if err := s.api.Serve(listener); err != nil {

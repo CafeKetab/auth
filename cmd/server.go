@@ -36,7 +36,7 @@ func (cmd *Server) main(cfg *config.Config, trap chan os.Signal) {
 		logger.Panic("Error creating token object", zap.Error(err))
 	}
 
-	go grpc.New(logger, crypto, token).Serve(9090)
+	go grpc.New(cfg.Grpc, logger, crypto, token).Serve()
 
 	// Keep this at the bottom of the main function
 	field := zap.String("signal trap", (<-trap).String())

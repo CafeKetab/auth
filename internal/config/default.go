@@ -3,6 +3,7 @@ package config
 import (
 	"time"
 
+	"github.com/CafeKetab/auth/internal/ports/grpc"
 	"github.com/CafeKetab/auth/pkg/crypto"
 	"github.com/CafeKetab/auth/pkg/logger"
 	"github.com/CafeKetab/auth/pkg/token"
@@ -13,6 +14,9 @@ func Default() *Config {
 		Logger: &logger.Config{
 			Development: true,
 			Level:       "debug",
+		},
+		Grpc: &grpc.Config{
+			ListenPort: 9091,
 		},
 		Token: &token.Config{
 			PrivatePem: "-----BEGIN PRIVATE KEY-----\n" +
