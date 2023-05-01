@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/CafeKetab/auth-go/pkg/crypto"
+	"github.com/CafeKetab/auth/pkg/crypto"
 )
 
 func TestAES(t *testing.T) {

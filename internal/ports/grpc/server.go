@@ -8,9 +8,9 @@ import (
 	"strconv"
 
 	pb "github.com/CafeKetab/PBs/golang/auth"
-	"github.com/CafeKetab/auth-go/internal/ports"
-	"github.com/CafeKetab/auth-go/pkg/crypto"
-	"github.com/CafeKetab/auth-go/pkg/token"
+	"github.com/CafeKetab/auth/internal/ports"
+	"github.com/CafeKetab/auth/pkg/crypto"
+	"github.com/CafeKetab/auth/pkg/token"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )

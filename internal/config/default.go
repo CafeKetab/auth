@@ -3,9 +3,9 @@ package config
 import (
 	"time"
 
-	"github.com/CafeKetab/auth-go/pkg/crypto"
-	"github.com/CafeKetab/auth-go/pkg/logger"
-	"github.com/CafeKetab/auth-go/pkg/token"
+	"github.com/CafeKetab/auth/pkg/crypto"
+	"github.com/CafeKetab/auth/pkg/logger"
+	"github.com/CafeKetab/auth/pkg/token"
 )
 
 func Default() *Config {

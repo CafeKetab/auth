@@ -1,4 +1,4 @@
-module github.com/CafeKetab/auth-go
+module github.com/CafeKetab/auth
 
 go 1.20
 

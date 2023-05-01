@@ -1,9 +1,9 @@
 package config
 
 import (
-	"github.com/CafeKetab/auth-go/pkg/crypto"
-	"github.com/CafeKetab/auth-go/pkg/logger"
-	"github.com/CafeKetab/auth-go/pkg/token"
+	"github.com/CafeKetab/auth/pkg/crypto"
+	"github.com/CafeKetab/auth/pkg/logger"
+	"github.com/CafeKetab/auth/pkg/token"
 )
 
 type Config struct {

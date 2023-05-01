@@ -3,11 +3,11 @@ package cmd
 import (
 	"os"
 
-	"github.com/CafeKetab/auth-go/internal/config"
-	"github.com/CafeKetab/auth-go/internal/ports/grpc"
-	"github.com/CafeKetab/auth-go/pkg/crypto"
-	"github.com/CafeKetab/auth-go/pkg/logger"
-	"github.com/CafeKetab/auth-go/pkg/token"
+	"github.com/CafeKetab/auth/internal/config"
+	"github.com/CafeKetab/auth/internal/ports/grpc"
+	"github.com/CafeKetab/auth/pkg/crypto"
+	"github.com/CafeKetab/auth/pkg/logger"
+	"github.com/CafeKetab/auth/pkg/token"
 
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
