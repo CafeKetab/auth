@@ -20,15 +20,15 @@ type server struct {
 	crypto crypto.Crypto
 	token  token.Token
 
-	server *grpc.Server
+	api *grpc.Server
 	pb.UnimplementedAuthServer
 }
 
 func New(logger *zap.Logger, crypto crypto.Crypto, token token.Token) ports.Server {
 	s := &server{logger: logger, crypto: crypto, token: token}
 
-	s.server = grpc.NewServer()
-	pb.RegisterAuthServer(s.server, s)
+	s.api = grpc.NewServer()
+	pb.RegisterAuthServer(s.api, s)
 
 	return s
 }
@@ -40,7 +40,7 @@ func (s *server) Serve(port int) {
 		s.logger.Panic("Error listening for gRPC server", zap.Int("port", port), zap.Error(err))
 	}
 
-	if err := s.server.Serve(listener); err != nil {
+	if err := s.api.Serve(listener); err != nil {
 		s.logger.Panic("Error serving gRPC server", zap.Error(err))
 	}
 }
