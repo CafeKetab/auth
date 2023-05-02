@@ -14,9 +14,10 @@ func Default() *Config {
 		Logger: &logger.Config{
 			Development: true,
 			Level:       "debug",
+			Encoding:    "console",
 		},
 		Grpc: &grpc.Config{
-			ListenPort: 9091,
+			ListenPort: 9090,
 		},
 		Token: &token.Config{
 			PrivatePem: "-----BEGIN PRIVATE KEY-----\n" +
@@ -25,7 +26,7 @@ func Default() *Config {
 			PublicPem: "-----BEGIN PUBLIC KEY-----\n" +
 				"MCowBQYDK2VwAyEAqQsZ5iRNP3kdpNn3V/db9o/WkYHY8kkwQqCZGcDvJ+g=\n" +
 				"-----END PUBLIC KEY-----",
-			Expiration: 30 * time.Second,
+			Expiration: 30 * time.Minute,
 		},
 		Crypto: &crypto.Config{
 			Secret: "7w!z%C*F-JaNdRgU",
